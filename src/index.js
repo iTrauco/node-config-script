@@ -1,56 +1,56 @@
 const fs = require('fs');
 const path = require('path');
-const  inquirer = require('inquirer');
+const inquirer = require('inquirer');
 
 const existingConfig = fs.existsSync('now.json');
 
 function buildConfig() {
-    inquirer
+  inquirer
     .prompt([
-        {
-            type: 'text',
-            name: 'name',
-            message: 'What is the name of the project?',
-            default: path.basename(process.cwd())
-        },
-        {
-            type: 'list',
-            name: 'type',
-            message: 'What type of project is this?',
-            choices: [
-                'node-express',
-                'static',
-                'lambda',
-                'static-build',
-                'react',
-                'three',
-            ],  
-        }
+      {
+        type: 'text',
+        name: 'name',
+        message: 'What is the name of the project?',
+        default: path.basename(process.cwd()),
+      },
+      {
+        type: 'list',
+        name: 'type',
+        message: 'What type of project is this?',
+        choices: [
+          'node-express',
+          'static',
+          'lambda',
+          'static-build',
+          'react',
+          'three',
+        ],
+      },
     ])
-    .then(answers => {
-        console.log(answers);
+    .then((answers) => {
+      console.log(answers);
     });
 }
 
 if (existingConfig) {
-    inquirer
+  inquirer
     .prompt([
-        {
-            type: 'confirm',
-            name: 'overwrite',
-            message: '\'now.json\' already exists! Do you want to overwrite the existing file?',
-            default: false
-        }
+      {
+        type: 'confirm',
+        name: 'overwrite',
+        message: '\'now.json\' already exists! Do you want to overwrite the existing file?',
+        default: false,
+      },
     ])
-    .then(answers => {
-        if(answers.overwrite) {
-            buildConfig();
-        } else {
-            console.log('Goodbye...');
-        }
+    .then((answers) => {
+      if (answers.overwrite) {
+        buildConfig();
+      } else {
+        console.log('Goodbye...');
+      }
     });
 } else {
-    buildConfig();
+  buildConfig();
 }
 
 // inquirer

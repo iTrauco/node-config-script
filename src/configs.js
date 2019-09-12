@@ -1,17 +1,17 @@
 const nodeExpress = {
-    "name": 'node-server-express',
-    "version": 2,
-    "builds": [
-        {
-            "src": "src/index.js",
-            "use": "@now/node-server"
-        }
-    ],
-    "routes": [
-        { "src": "/.*", "dest": "src/index.js" }
-    ]
+  name: 'node-server-express',
+  version: 2,
+  builds: [
+    {
+      src: 'src/index.js',
+      use: '@now/node-server',
+    },
+  ],
+  routes: [
+    { src: '/.*', dest: 'src/index.js' },
+  ],
 };
 
 module.exports = {
-    nodeExpress,
-}
+  nodeExpress,
+};
