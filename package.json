@@ -1,0 +1,11 @@
+{
+  "name": "now-config",
+  "version": "1.0.0",
+  "description": "Node.js CLI to generate now.sh configuration file. ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Trau.co",
+  "license": "ISC"
+}
