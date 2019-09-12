@@ -4,9 +4,6 @@ const  inquirer = require('inquirer');
 
 const existingConfig = fs.existsSync('now.json');
 
-// console.log(__dirname);
-// console.log(process.cwd());
-
 function buildConfig() {
     inquirer
     .prompt([
@@ -19,11 +16,6 @@ function buildConfig() {
     ])
     .then(answers => {
         console.log(answers);
-        // if(answers.overwrite) {
-        //     buildConfig();
-        // } else {
-        //     console.log('Goodbye...');
-        // }
     });
 }
 
