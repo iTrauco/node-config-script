@@ -12,6 +12,19 @@ function buildConfig() {
             name: 'name',
             message: 'What is the name of the project?',
             default: path.basename(process.cwd())
+        },
+        {
+            type: 'list',
+            name: 'type',
+            message: 'What type of project is this?',
+            choices: [
+                'node-express',
+                'static',
+                'lambda',
+                'static-build',
+                'react',
+                'three',
+            ],  
         }
     ])
     .then(answers => {
