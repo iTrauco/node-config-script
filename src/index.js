@@ -2,9 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
 
+const nodeExpress = require('./configs/nodeExpress');
+
 const existingConfig = fs.existsSync('now.json');
 
 function buildConfig() {
+    let config = {
+        version: 2, 
+    };
+
   inquirer
     .prompt([
       {
@@ -28,7 +34,13 @@ function buildConfig() {
       },
     ])
     .then((answers) => {
-      console.log(answers);
+      config.name = answers.name;
+      switch(answers.type) {
+          case 'node-express':
+            config = nodeExpress(config);
+            break;
+      }
+      console.log(config);
     });
 }
 
@@ -52,16 +64,3 @@ if (existingConfig) {
 } else {
   buildConfig();
 }
-
-// inquirer
-//   .prompt([
-//     {
-//         type: 'confirm',
-//         name: 'isRobot',
-//         message: 'Are you a robot?',
-//         default: false
-//       },
-//   ])
-//   .then(answers => {
-//     console.log(answers);
-//   });
