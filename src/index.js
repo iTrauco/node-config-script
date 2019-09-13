@@ -31,7 +31,6 @@ async function buildConfig() {
           'react',
           'vue',
           'static-build',
-          'lambda',
         ],
       },
     ])
