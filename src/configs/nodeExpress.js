@@ -15,7 +15,7 @@ const baseConfig = {
   };
   
 async function nodeExpress (config) {
-  let main = 'src/index.js';
+  let mainFile = 'src/index.js';
   try {
     // eslint-disable-next-line
     const packageJSON = require(process.cwd() + './package.json');
@@ -27,11 +27,12 @@ async function nodeExpress (config) {
         type: 'text',
         name: 'main',
         message: 'What is the PATH to the express entry point?',
-        default: main,
+        default: mainFile,
       },
     ]);
-    console.log(answers);
-
+    // console.log(answers);
+    baseConfig.builds[0].src = answers.main;
+    baseConfig.routes[0].dest = answers.main;
     return {
         ...config,
         ...baseConfig,
