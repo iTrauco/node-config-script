@@ -6,12 +6,12 @@ const nodeExpress = require('./configs/nodeExpress');
 
 const existingConfig = fs.existsSync('now.json');
 
-function buildConfig() {
+async function buildConfig() {
     let config = {
         version: 2, 
     };
 
-  inquirer
+  const answers = await inquirer
     .prompt([
       {
         type: 'text',
@@ -33,15 +33,13 @@ function buildConfig() {
         ],
       },
     ])
-    .then((answers) => {
-      config.name = answers.name;
-      switch(answers.type) {
-          case 'node-express':
-            config = nodeExpress(config);
-            break;
-      }
-      console.log(config);
-    });
+    config.name = answers.name;
+    switch(answers.type) {
+        case 'node-express':
+          config = await nodeExpress(config);
+          break;
+    }
+    console.log(config);
 }
 
 if (existingConfig) {
