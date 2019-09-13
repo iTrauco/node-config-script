@@ -4,7 +4,7 @@ const inquirer = require('inquirer');
 
 const nodeExpress = require('./configs/nodeExpress');
 const staticConfig = require('./configs/staticConfig');
-const react = require('./configs/react');
+const fef = require('./configs/fef');
 
 const existingConfig = fs.existsSync('now.json');
 
@@ -28,10 +28,10 @@ async function buildConfig() {
         choices: [
           'node-express',
           'static',
-          'lambda',
-          'static-build',
           'react',
-          'three',
+          'vue',
+          'static-build',
+          'lambda',
         ],
       },
     ])
@@ -44,7 +44,10 @@ async function buildConfig() {
           config = await staticConfig(config);
           break;
         case 'react':
-          config = await react(config);
+          config = await fef(config, 'build');
+          break;
+        case 'vue':
+          config = await fef(config);
           break;
         default: 
           break;

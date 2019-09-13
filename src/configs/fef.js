@@ -16,14 +16,14 @@ const baseConfig = {
         ],
 };
   
-async function react(config) {
+async function fef(config, defaultBuild = 'dist') {
   const answers = await inquirer
     .prompt([
       {
         type: 'text',
         name: 'directory',
         message: 'What is the build directory?',
-        default: 'build',
+        default: defaultBuild,
       },
       {
         type: 'confirm',
@@ -57,10 +57,11 @@ async function react(config) {
         }
     }
     baseConfig.builds[0].config.distDir = answers.directory;
+    console.log(baseConfig.builds[0].config.distDir)
     return {
         ...config,
         ...baseConfig,
     };
 }
 
-module.exports = react;
+module.exports = fef;
