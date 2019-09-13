@@ -2,8 +2,6 @@ const path = require('path');
 const inquirer = require('inquirer');
 
 const baseConfig = {
-        name: 'static-example',
-        version: 2,
         builds: [
           { src: '*', use: '@now/static'}
         ]

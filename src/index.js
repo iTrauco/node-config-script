@@ -4,6 +4,7 @@ const inquirer = require('inquirer');
 
 const nodeExpress = require('./configs/nodeExpress');
 const staticConfig = require('./configs/staticConfig');
+const react = require('./configs/react');
 
 const existingConfig = fs.existsSync('now.json');
 
@@ -41,6 +42,9 @@ async function buildConfig() {
           break;
         case 'static':
           config = await staticConfig(config);
+          break;
+        case 'react':
+          config = await react(config);
           break;
         default: 
           break;
