@@ -49,6 +49,9 @@ async function buildConfig() {
         case 'vue':
           config = await fef(config);
           break;
+        case 'static-build':
+          config = await fef(config);
+          break;
         default: 
           break;
     }
