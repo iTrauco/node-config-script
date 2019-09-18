@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('fs');
 const path = require('path');
 const inquirer = require('inquirer');
@@ -6,7 +8,9 @@ const nodeExpress = require('./configs/nodeExpress');
 const staticConfig = require('./configs/staticConfig');
 const fef = require('./configs/fef');
 
-const existingConfig = fs.existsSync('now.json');
+
+const nowPath = path.join(process.cwd(), 'now.json');
+const existingConfig = fs.existsSync(nowPath);
 
 async function buildConfig() {
     let config = {
@@ -54,8 +58,39 @@ async function buildConfig() {
         default: 
           break;
     }
-    console.log(config);
-}
+    const moreAnswers = await inquirer
+      .prompt([
+        {
+          type: 'confirm',
+          name: 'specifyAlias',
+          message: 'Would you like to specify an alias?',
+          default: true,
+        },
+        {
+          type: 'text',
+          name: 'alias',
+          message: 'What is the alias? \n(Specify multiple separated by comas)',
+          default: a => a.specifyAlias,
+            // default: answers.name,
+            // when: a => {
+            //   console.log(a);
+            //   return a.specifyAlias;
+            // },
+        },
+        // {
+        //   type: 'confirm',
+        //   name: 'deploy',
+        //   message: 'Would you like to deploy right now?',
+        //   default: false,
+        // }
+      ]);
+      config.alias = moreAnswers.alias ? moreAnswers.alias.split(',').map(a => a.trim()) : undefined;
+      fs.writeFileSync(nowPath, JSON.stringify(config, null, 2), 'utf8');
+      // if (moreAnswers.deploy) {
+      //   console.log('All done! Type now to deploy...');      
+      console.log('All done! Type \'now\' to deploy...')
+      process.exit(0);
+    }
 
 if (existingConfig) {
   inquirer
@@ -63,7 +98,7 @@ if (existingConfig) {
       {
         type: 'confirm',
         name: 'overwrite',
-        message: '\'now.json\' already exists! Do you want to overwrite the existing file?',
+        message: '"now.json" already exists! Do you want to overwrite the existing file?',
         default: false,
       },
     ])
