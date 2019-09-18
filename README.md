@@ -1,6 +1,8 @@
 #node-config-script
 
-Node.js CLI script for local now.sh config generation.
+Node.js CLI script for now.sh config file generation. 
+
+This repo focused on the workflow for npm package creation/generation and has not been published to the NPM registry. 
 
 ### Example/Preview
 
