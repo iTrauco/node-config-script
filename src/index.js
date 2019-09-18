@@ -63,7 +63,7 @@ if (existingConfig) {
       {
         type: 'confirm',
         name: 'overwrite',
-        message: '\'now.json\' already exists! Do you want to overwrite the existing file?',
+        message: '"now.json" already exists! Do you want to overwrite the existing file?',
         default: false,
       },
     ])

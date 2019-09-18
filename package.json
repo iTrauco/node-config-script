@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "lint": "eslint src/",
-    "now-build": "npm run build"
+    "now-build": "npm wat"
   },
   "author": "Trau.co",
   "license": "ISC",
