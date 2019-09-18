@@ -4,8 +4,7 @@
   "description": "Node.js CLI to generate now.sh configuration file. ",
   "main": "src/index.js",
   "scripts": {
-    "lint": "eslint src/",
-    "now-build": "npm wat"
+    "lint": "eslint src/"
   },
   "author": "Trau.co",
   "license": "ISC",
