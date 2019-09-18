@@ -17,7 +17,6 @@ async function staticConfig (config) {
         default: '.',
       },
     ]);
-    // console.log(answers);
     baseConfig.builds[0].src = path.join(answers.directory, '*');
     return {
         ...config,

@@ -71,23 +71,10 @@ async function buildConfig() {
           name: 'alias',
           message: 'What is the alias? \n(Specify multiple separated by comas)',
           default: a => a.specifyAlias,
-            // default: answers.name,
-            // when: a => {
-            //   console.log(a);
-            //   return a.specifyAlias;
-            // },
         },
-        // {
-        //   type: 'confirm',
-        //   name: 'deploy',
-        //   message: 'Would you like to deploy right now?',
-        //   default: false,
-        // }
       ]);
       config.alias = moreAnswers.alias ? moreAnswers.alias.split(',').map(a => a.trim()) : undefined;
-      fs.writeFileSync(nowPath, JSON.stringify(config, null, 2), 'utf8');
-      // if (moreAnswers.deploy) {
-      //   console.log('All done! Type now to deploy...');      
+      fs.writeFileSync(nowPath, JSON.stringify(config, null, 2), 'utf8');    
       console.log('All done! Type \'now\' to deploy...')
       process.exit(0);
     }
